@@ -35,9 +35,9 @@ app.use(express.json())
 app.use(morgan('dev'))
 
 app.get('/', (req, res) => {
-  res.send('its work')
+  res.render('index')
 })
 
 app.use((req,res) => {
-  res.status(404).send('404')
+  res.status(404).render('404')
 })
