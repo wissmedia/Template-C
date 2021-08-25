@@ -2,6 +2,10 @@ const express = require('express')
 const path = require('path')
 const morgan = require('morgan')
 const mongoose = require('mongoose');
+const cookieParser = require('cookie-parser')
+
+const { requireAuth, checkUser } = require('./middleware/auth')
+const authRouter = require('./routes/auth')
 
 require("dotenv").config();
 const {
@@ -33,11 +37,19 @@ app.set('view engine', 'ejs')
 app.use(express.static(path.join(__dirname, 'public')))
 app.use(express.urlencoded({ extended: true }))
 app.use(express.json())
+app.use(cookieParser())
 app.use(morgan('dev'))
 
+app.get('*', checkUser)
+
 app.get('/', (req, res) => {
-  res.render('index', {appTitle, navTitle: 'Beranda'})
+  let navMenus = [
+    { link: '/responden', icon: 'fas fa-search', label: 'Mulai Menjawab' },
+  ]
+  res.render('index', { appTitle, navTitle: 'Beranda', navMenus })
 })
+
+app.use(authRouter)
 
 app.use((req, res) => {
   res.status(404).render('404', {appTitle, navTitle: 'Oops...'})
