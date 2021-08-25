@@ -14,6 +14,7 @@ const URI = `mongodb://${MONGO_HOSTNAME}:${MONGO_PORT}/${MONGO_DB}`;
 
 const app = express()
 const port = process.env.PORT || 1000
+const appTitle = 'Paperon'
 
 mongoose.connect(URI)
   .then(result => {
@@ -35,9 +36,9 @@ app.use(express.json())
 app.use(morgan('dev'))
 
 app.get('/', (req, res) => {
-  res.render('index')
+  res.render('index', {appTitle, navTitle: 'Beranda'})
 })
 
 app.use((req, res) => {
-  res.status(404).render('404')
+  res.status(404).render('404', {appTitle, navTitle: 'Oops...'})
 })

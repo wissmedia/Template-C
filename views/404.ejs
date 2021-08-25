@@ -1,37 +1,28 @@
 <!DOCTYPE html>
 <html lang="en">
+<%- include('./partials/head.ejs') %>
 
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <body>
+    <div class="error-container">
+      <div class="animasi-1"></div>
+      <div class="animasi-2"></div>
+      <span class="error-text">
+        404
+      </span>
+      <p>
+        Ooops! Something's missing
+      </p>
 
-  <link rel="stylesheet" href="/css/main.css">
-  <link href="/icons/css/all.css" rel="stylesheet">
-  <title>Semalam</title>
-</head>
+      <br>
 
-<body>
-  <div class="error-container">
-    <div class="animasi-1"></div>
-    <div class="animasi-2"></div>
-    <span class="error-text">
-      404
-    </span>
-    <p>
-      Ooops! Something's missing
-    </p>
-
-    <br>
-
-    <button class="tombol tmb-utama">
-      <a href="/">
-        <strong>
-          Go Back to Home
-        </strong>
-      </a>
-    </button>
-  </div>
-</body>
+      <button class="tombol tmb-utama">
+        <a href="/">
+          <strong>
+            Go Back to Home
+          </strong>
+        </a>
+      </button>
+    </div>
+  </body>
 
 </html>
