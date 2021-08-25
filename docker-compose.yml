@@ -1,0 +1,24 @@
+version: '2.4'
+services: 
+  paperon-app:
+    container_name: paperon-app
+    image: wissmedia/paperon:0.0.1
+    ports: 
+      - 4500:1000
+    environment: 
+      MONGO_HOSTNAME: paperon-db
+      MONGO_PORT: 27017
+      MONGO_DB: paperon
+    restart: unless-stopped
+    links: 
+      - paperon-db
+  paperon-db:
+    container_name: paperon-db
+    image: mongo:4.4.8
+    volumes: 
+      - paperon-db:/data/db
+      - paperon-dbconfig:/data/configdb
+    restart: unless-stopped
+volumes: 
+  paperon-db:
+  paperon-dbconfig:
