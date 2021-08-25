@@ -8,17 +8,12 @@ const {
   MONGO_DB,
 } = process.env
 
-const options = {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-};
-
 const URI = `mongodb://${MONGO_HOSTNAME}:${MONGO_PORT}/${MONGO_DB}`;
 
 const app = express()
 const port = process.env.PORT || 1000
 
-mongoose.connect(URI, options)
+mongoose.connect(URI)
   .then(result => {
     console.log(`Connected to DB at ${MONGO_HOSTNAME}:${MONGO_PORT}`)
     app.listen(port, () => {
