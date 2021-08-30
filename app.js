@@ -6,6 +6,7 @@ const cookieParser = require('cookie-parser')
 
 const { requireAuth, checkUser } = require('./middleware/auth')
 const authRouter = require('./routes/auth')
+const adminRouter = require('./routes/admin')
 
 require("dotenv").config();
 const {
@@ -50,6 +51,8 @@ app.get('/', (req, res) => {
 })
 
 app.use(authRouter)
+
+app.use('/admin', requireAuth, adminRouter)
 
 app.use((req, res) => {
   res.status(404).render('404', {appTitle, navTitle: 'Oops...'})
